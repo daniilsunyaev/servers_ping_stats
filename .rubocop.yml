@@ -6,3 +6,15 @@ AllCops:
     - "db/**/*"
 Documentation:
   Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - "bin/bundle"
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - "bin/bundle"
+
+Metrics/MethodLength:
+  Exclude:
+    - "bin/bundle"
