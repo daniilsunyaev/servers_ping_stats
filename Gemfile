@@ -14,6 +14,7 @@ gem 'rails', '~> 6.1.1'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
+gem 'active_model_serializers', '~> 0.10.0'
 gem 'descriptive_statistics', require: false
 
 group :development, :test do

@@ -2,10 +2,10 @@
 
 require 'descriptive_statistics/safe'
 
-class PingStatistics
+class PingStatistics < ActiveModelSerializers::Model
   attr_reader :relation
 
-  def initialize(relation)
+  def initialize(relation) # rubocop:todo Lint/MissingSuper
     @relation = relation
   end
 
@@ -31,6 +31,10 @@ class PingStatistics
 
   def loss_percentage
     (100.0 * (1 - successful_durations.size.to_f / ping_durations.size)).round(3)
+  end
+
+  def blank?
+    ping_durations.size.zero?
   end
 
   private
