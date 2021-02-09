@@ -1,0 +1,17 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+development:
+  <<: *default
+  database: <%= ENV['DATABASE_NAME'] || 'servers_ping_stats_development' %>
+
+test:
+  <<: *default
+  database: <%= ENV['DATABASE_NAME'] || 'servers_ping_stats_test' %>
+
+production:
+  <<: *default
+  database: <%= ENV['DATABASE_NAME'] || 'servers_ping_stats_production' %>
