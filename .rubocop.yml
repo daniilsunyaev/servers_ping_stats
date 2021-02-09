@@ -10,6 +10,7 @@ Documentation:
 Metrics/BlockLength:
   Exclude:
     - "bin/bundle"
+    - "spec/**/*_spec.rb"
 
 Metrics/CyclomaticComplexity:
   Exclude:
@@ -18,3 +19,6 @@ Metrics/CyclomaticComplexity:
 Metrics/MethodLength:
   Exclude:
     - "bin/bundle"
+
+Naming/VariableNumber:
+  EnforcedStyle: snake_case
