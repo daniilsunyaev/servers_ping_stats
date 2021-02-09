@@ -5,7 +5,7 @@ require 'descriptive_statistics/safe'
 class PingStatistics < ActiveModelSerializers::Model
   attr_reader :relation
 
-  def initialize(relation)
+  def initialize(relation) # rubocop:todo Lint/MissingSuper
     @relation = relation
   end
 

@@ -56,26 +56,26 @@ describe PingStatisticsController, type: :controller do
         context 'with some ping results existing' do
           let!(:ping_result) do
             create :ping_result,
-              host: '8.8.8.8',
-              port: 80,
-              duration: 0.5,
-              created_at: 45.minutes.ago
+                   host: '8.8.8.8',
+                   port: 80,
+                   duration: 0.5,
+                   created_at: 45.minutes.ago
           end
 
           let!(:failed_ping_result) do
             create :ping_result,
-              host: '8.8.8.8',
-              port: 80,
-              duration: nil,
-              created_at: 45.minutes.ago
+                   host: '8.8.8.8',
+                   port: 80,
+                   duration: nil,
+                   created_at: 45.minutes.ago
           end
 
           let!(:another_ping_result) do
             create :ping_result,
-              host: '8.8.8.8',
-              port: 3000,
-              duration: 0.05,
-              created_at: 45.minutes.ago
+                   host: '8.8.8.8',
+                   port: 3000,
+                   duration: 0.05,
+                   created_at: 45.minutes.ago
           end
 
           it 'returns ping stats over specified interval' do
