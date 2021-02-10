@@ -62,6 +62,8 @@ bin/rails s
 
 ### Add host to monitored list
 
+`POST /host_monitorings`
+
 required `host: string`
 
 ```
@@ -80,6 +82,8 @@ curl -X POST -H 'Content-type: application/json' -H 'Accept: application/json' -
 
 ### Remove host from monitored list
 
+`POST /host_monitorings/stop`
+
 required `host: string`
 
 
@@ -91,11 +95,14 @@ curl -X POST -H 'Content-type: application/json' -H 'Accept: application/json' -
 
 ### Get monitoring statistics
 
+`GET /ping_statistics`
+
 required `host: string`, `timeframe_starts_at: string` (unix timestamp)
+
 optional `timeframe_ends_at: string` (unix timestamp, replaced with current time if not specified)
 
 ```
-curl -X GET -H 'Content-type: application/json' -H 'Accept: application/json' -d '{"host" : "8.8.8.8", "timeframe_starts_at":"1612951108"}' 127.0.0.1:3000/ping_statistics
+curl -X GET -H 'Content-type: application/json' -H 'Accept: application/json' -d '{"host" : "8.8.8.8", "timeframe_starts_at":"1612951108"}' '127.0.0.1:3000/ping_statistics'
 
 {"min":0.041,"max":0.044,"mean":0.043,"median":0.043,"standard_deviation":0.001,"loss_percentage":0.0}
 ```
@@ -103,7 +110,7 @@ curl -X GET -H 'Content-type: application/json' -H 'Accept: application/json' -d
 If no ping was available over specified timeframe, will return 404:
 
 ```
-curl -X GET -H 'Content-type: application/json' -H 'Accept: application/json' -d '{"host" : "8.8.8.8", "timeframe_starts_at":"1612951108", "timeframe_ends_at":"1612951118"}' 127.0.0.1:3000/ping_statistics
+curl -X GET -H 'Content-type: application/json' -H 'Accept: application/json' -d '{"host" : "8.8.8.8", "timeframe_starts_at":"1612951108", "timeframe_ends_at":"1612951118"}' '127.0.0.1:3000/ping_statistics'
 
 {"errors":{"base":"can't find any ping statistics over specified period"}}
 ```
