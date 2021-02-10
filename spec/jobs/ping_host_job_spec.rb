@@ -9,7 +9,7 @@ RSpec.describe PingHostJob, type: :job do
     let(:host) { '8.8.8.8' }
 
     before do
-      allow(Net::Ping::External).to receive(:new).with(host) { external_ping }
+      allow(Net::Ping::External).to receive(:new).with(host, nil, 5) { external_ping }
     end
 
     context 'when host is available' do

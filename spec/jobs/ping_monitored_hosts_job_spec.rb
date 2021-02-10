@@ -13,9 +13,14 @@ RSpec.describe PingMonitoredHostsJob, type: :job do
       create :host_monitoring, host: '127.0.0.1', ended_at: 2.days.ago, created_at: 1.month.ago
     end
 
-    let(:delayed_job) { instance_double ActiveJob::ConfiguredJob }
-    it 'reschedules itself' do
+    let(:delayed_job) { instance_double ActiveJob::ConfiguredJob, perform_later: true }
+
+    before do
       expect(described_class).to receive(:set) { delayed_job }
+      allow(PingHostJob).to receive(:perform_later)
+    end
+
+    it 'reschedules itself' do
       expect(delayed_job).to receive(:perform_later)
 
       subject
