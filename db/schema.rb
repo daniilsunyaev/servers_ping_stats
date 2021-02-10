@@ -10,14 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_10_055510) do
+ActiveRecord::Schema.define(version: 2021_02_10_062323) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "host_monitorings", force: :cascade do |t|
     t.string "host", null: false
-    t.integer "port"
     t.datetime "ended_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -26,14 +25,13 @@ ActiveRecord::Schema.define(version: 2021_02_10_055510) do
 
   create_table "ping_results", force: :cascade do |t|
     t.string "host", null: false
-    t.integer "port"
     t.float "duration"
     t.string "error"
     t.string "warning"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["created_at"], name: "index_ping_results_on_created_at", using: :brin
-    t.index ["host", "port"], name: "index_ping_results_on_host_and_port"
+    t.index ["host"], name: "index_ping_results_on_host"
   end
 
 end

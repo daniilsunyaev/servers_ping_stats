@@ -26,7 +26,6 @@ class PingStatisticsRequestParams
 
     {
       host: host,
-      port: port,
       timeframe_starts_at: timeframe_starts_at,
       timeframe_ends_at: timeframe_ends_at
     }
@@ -49,10 +48,6 @@ class PingStatisticsRequestParams
 
   def host
     action_controller_params[:host]
-  end
-
-  def port
-    action_controller_params[:port]
   end
 
   def timeframe_starts_at

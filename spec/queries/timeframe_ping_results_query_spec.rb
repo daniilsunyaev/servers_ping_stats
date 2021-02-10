@@ -39,30 +39,25 @@ describe TimeframePingResultsQuery do
 
     context 'with ping results set in the database' do
       let(:another_host) { '127.0.0.1' }
-      let(:another_port) { 3000 }
 
       let!(:host_ping_result_1) do
-        create :ping_result, created_at: 13.hours.ago, host: host, port: nil
+        create :ping_result, created_at: 13.hours.ago, host: host
       end
 
       let!(:host_ping_result_2) do
-        create :ping_result, created_at: 11.hours.ago, host: host, port: nil
+        create :ping_result, created_at: 11.hours.ago, host: host
       end
 
       let!(:another_host_ping_result) do
-        create :ping_result, created_at: 8.hours.ago, host: another_host, port: nil
-      end
-
-      let!(:another_port_ping_result) do
-        create :ping_result, created_at: 7.hours.ago, host: host, port: another_port
+        create :ping_result, created_at: 8.hours.ago, host: another_host
       end
 
       let!(:host_ping_result_3) do
-        create :ping_result, created_at: 6.hours.ago, host: host, port: nil
+        create :ping_result, created_at: 6.hours.ago, host: host
       end
 
       let!(:host_ping_result_4) do
-        create :ping_result, created_at: 4.hours.ago, host: host, port: nil
+        create :ping_result, created_at: 4.hours.ago, host: host
       end
 
       context 'with existing host/timeframe specified' do
@@ -74,12 +69,12 @@ describe TimeframePingResultsQuery do
                          })
         end
 
-        it 'returns ping results for given host and port in a given timeframe' do
+        it 'returns ping results for given host  in a given timeframe' do
           expect(subject).to match_array [host_ping_result_2, host_ping_result_3]
         end
       end
 
-      context 'with non-existing port/host/timeframe specified' do
+      context 'with non-existing host/timeframe specified' do
         before do
           options.merge!({
                            host: '0.0.0.0',
