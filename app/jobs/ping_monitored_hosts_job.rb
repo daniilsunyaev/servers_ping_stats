@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PingMonitoredHostsJob < ApplicationJob
   queue_as :default
   sidekiq_options retry: false
