@@ -69,11 +69,11 @@ describe PingStatisticsRequestParams do
 
     context 'with valid parameters' do
       before do
-        params.merge!(host: '8.8.8.8', port: 80, timeframe_starts_at: '1612888444')
+        params.merge!(host: '8.8.8.8', timeframe_starts_at: '1612888444')
       end
 
       it 'sets parameters' do
-        expect(subject.slice(:host, :port)).to eq({ host: '8.8.8.8', port: 80 })
+        expect(subject.slice(:host, :port)).to eq({ host: '8.8.8.8', port: nil })
         expect(subject[:timeframe_starts_at].class).to eq DateTime
         expect(subject[:timeframe_ends_at].class).to eq DateTime
       end

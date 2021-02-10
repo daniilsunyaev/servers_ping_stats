@@ -4,7 +4,6 @@ require 'rails_helper'
 
 describe TimeframePingResultsQuery do
   let(:host) { '8.8.8.8' }
-  let(:port) { 80 }
   let(:options) { {} }
 
   describe '#initialize' do
@@ -14,9 +13,9 @@ describe TimeframePingResultsQuery do
       expect { subject }.to raise_error ArgumentError
     end
 
-    context 'with host and port specified' do
+    context 'with host specified' do
       before do
-        options.merge!(host: host, port: port)
+        options.merge!(host: host)
       end
 
       it 'tells that not all arguments are proveded' do
@@ -43,15 +42,15 @@ describe TimeframePingResultsQuery do
       let(:another_port) { 3000 }
 
       let!(:host_ping_result_1) do
-        create :ping_result, created_at: 13.hours.ago, host: host, port: port
+        create :ping_result, created_at: 13.hours.ago, host: host, port: nil
       end
 
       let!(:host_ping_result_2) do
-        create :ping_result, created_at: 11.hours.ago, host: host, port: port
+        create :ping_result, created_at: 11.hours.ago, host: host, port: nil
       end
 
       let!(:another_host_ping_result) do
-        create :ping_result, created_at: 8.hours.ago, host: another_host, port: port
+        create :ping_result, created_at: 8.hours.ago, host: another_host, port: nil
       end
 
       let!(:another_port_ping_result) do
@@ -59,18 +58,17 @@ describe TimeframePingResultsQuery do
       end
 
       let!(:host_ping_result_3) do
-        create :ping_result, created_at: 6.hours.ago, host: host, port: port
+        create :ping_result, created_at: 6.hours.ago, host: host, port: nil
       end
 
       let!(:host_ping_result_4) do
-        create :ping_result, created_at: 4.hours.ago, host: host, port: port
+        create :ping_result, created_at: 4.hours.ago, host: host, port: nil
       end
 
-      context 'with existing port/host/timeframe specified' do
+      context 'with existing host/timeframe specified' do
         before do
           options.merge!({
                            host: host,
-                           port: port,
                            timeframe_starts_at: 12.hours.ago,
                            timeframe_ends_at: 5.hours.ago
                          })
@@ -85,7 +83,6 @@ describe TimeframePingResultsQuery do
         before do
           options.merge!({
                            host: '0.0.0.0',
-                           port: port,
                            timeframe_starts_at: 12.hours.ago,
                            timeframe_ends_at: 5.hours.ago
                          })

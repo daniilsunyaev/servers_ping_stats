@@ -3,7 +3,7 @@
 class TimeframePingResultsQuery
   attr_reader :relation, :host, :port, :timeframe_starts_at, :timeframe_ends_at
 
-  def initialize(relation = PingResult.all, host:, port:, timeframe_starts_at:, timeframe_ends_at: Time.current)
+  def initialize(relation = PingResult.all, host:, port: nil, timeframe_starts_at:, timeframe_ends_at: Time.current)
     @relation = relation
     @host = host
     @port = port

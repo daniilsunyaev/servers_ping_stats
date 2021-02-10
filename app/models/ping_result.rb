@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 class PingResult < ApplicationRecord
-  validates :host, :port, presence: true
+  validates :host, presence: true
 end

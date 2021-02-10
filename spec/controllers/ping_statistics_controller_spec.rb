@@ -16,7 +16,7 @@ describe PingStatisticsController, type: :controller do
 
         json_body = JSON.parse(response.body)
 
-        expect(json_body['errors'].keys).to match_array(%w[host port timeframe_starts_at])
+        expect(json_body['errors'].keys).to match_array(%w[host timeframe_starts_at])
       end
     end
 
