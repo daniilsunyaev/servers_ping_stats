@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module HostMonitorings
   class StopCommand
     include Interactor
