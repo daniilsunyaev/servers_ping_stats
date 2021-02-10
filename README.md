@@ -18,6 +18,20 @@ Run setup
 bin/setup
 ```
 
+<details>
+  <summary>Optional checks</summary>
+
+  Runs tests suite if you want:
+  ```
+  bin/rspec spec
+  ```
+
+  If you are crazy pedant, run rubocop checks:
+  ```
+  bin/rubocop
+  ```
+</details>
+
 Run redis server
 
 ```
