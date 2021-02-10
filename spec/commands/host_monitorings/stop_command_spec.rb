@@ -47,5 +47,19 @@ describe HostMonitorings::StopCommand do
         expect { subject }.not_to change(HostMonitoring, :count)
       end
     end
+
+    context 'when trying ot stop non-monitored host' do
+      let(:host_monitoring) { nil }
+
+      it 'does not execute successfuly' do
+        subject
+
+        expect(subject.success?).to eq false
+      end
+
+      it 'does not change monitoring count' do
+        expect { subject }.not_to change(HostMonitoring, :count)
+      end
+    end
   end
 end
