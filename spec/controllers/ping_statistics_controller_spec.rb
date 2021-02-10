@@ -16,13 +16,13 @@ describe PingStatisticsController, type: :controller do
 
         json_body = JSON.parse(response.body)
 
-        expect(json_body['errors'].keys).to match_array(%w[host port timeframe_starts_at])
+        expect(json_body['errors'].keys).to match_array(%w[host timeframe_starts_at])
       end
     end
 
-    context 'with host and port specified' do
+    context 'with host  specified' do
       let(:params) do
-        { host: '8.8.8.8', port: 80 }
+        { host: '8.8.8.8' }
       end
 
       it 'requires parameters to be set' do
@@ -57,7 +57,6 @@ describe PingStatisticsController, type: :controller do
           let!(:ping_result) do
             create :ping_result,
                    host: '8.8.8.8',
-                   port: 80,
                    duration: 0.5,
                    created_at: 45.minutes.ago
           end
@@ -65,15 +64,13 @@ describe PingStatisticsController, type: :controller do
           let!(:failed_ping_result) do
             create :ping_result,
                    host: '8.8.8.8',
-                   port: 80,
                    duration: nil,
                    created_at: 45.minutes.ago
           end
 
           let!(:another_ping_result) do
             create :ping_result,
-                   host: '8.8.8.8',
-                   port: 3000,
+                   host: '1.1.1.1',
                    duration: 0.05,
                    created_at: 45.minutes.ago
           end

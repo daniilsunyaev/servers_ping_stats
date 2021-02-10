@@ -17,9 +17,9 @@ describe PingStatisticsRequestParams do
       expect(value_object.errors).not_to be_blank
     end
 
-    context 'when host and port are specified' do
+    context 'when host is specified' do
       before do
-        params.merge!(host: '0.0.0.0', port: 30)
+        params.merge!(host: '0.0.0.0')
       end
 
       it { is_expected.to eq false }
@@ -69,11 +69,11 @@ describe PingStatisticsRequestParams do
 
     context 'with valid parameters' do
       before do
-        params.merge!(host: '8.8.8.8', port: 80, timeframe_starts_at: '1612888444')
+        params.merge!(host: '8.8.8.8', timeframe_starts_at: '1612888444')
       end
 
       it 'sets parameters' do
-        expect(subject.slice(:host, :port)).to eq({ host: '8.8.8.8', port: 80 })
+        expect(subject[:host]).to eq '8.8.8.8'
         expect(subject[:timeframe_starts_at].class).to eq DateTime
         expect(subject[:timeframe_ends_at].class).to eq DateTime
       end

@@ -6,7 +6,7 @@ class PingStatisticsRequestParams
   BLANK_ERROR = "Can't be blank"
   TOO_LONG_TIMEFRAME_ERROR = 'Specified timeframe should less than 30 days'
 
-  REQUIRED_PARAMS = %i[host port timeframe_starts_at].freeze
+  REQUIRED_PARAMS = %i[host timeframe_starts_at].freeze
   MAX_TIMEFRAME = 30.days
 
   def initialize(action_controller_params)
@@ -26,7 +26,6 @@ class PingStatisticsRequestParams
 
     {
       host: host,
-      port: port,
       timeframe_starts_at: timeframe_starts_at,
       timeframe_ends_at: timeframe_ends_at
     }
@@ -49,10 +48,6 @@ class PingStatisticsRequestParams
 
   def host
     action_controller_params[:host]
-  end
-
-  def port
-    action_controller_params[:port]
   end
 
   def timeframe_starts_at

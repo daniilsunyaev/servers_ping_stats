@@ -28,6 +28,6 @@ class PingStatisticsController < ActionController::API
   end
 
   def statistics_params
-    params.permit(:host, :port, :timeframe_starts_at, :timeframe_ends_at)
+    params.permit(:host, :timeframe_starts_at, :timeframe_ends_at)
   end
 end
